@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: None
 pragma solidity ^0.6;
-pragma experimental ABIEncoderV2;
 
 contract Ref {
 
@@ -27,5 +26,5 @@ contract Ref {
         score[referrer[tx.origin]] += d;
     }
 
-    event ReferrerSet(address indexed origin, address, referrer);
+    event ReferrerSet(address indexed origin, address indexed referrer);
 }
