@@ -16,9 +16,8 @@ import "./StakingRewardsAcceleration.sol";
 pragma solidity >=0.5.0;
 
 interface IRef {
-    function set_referrer(address a, address b) external;
+    function set_referrer(address r) external;
     function add_score(address a, uint d) external;
-    function add_subordinate(address a, address r) external;
 }
 
 contract StakingRewards is Ownable, ReentrancyGuard, StakingRewardsAcceleration {
@@ -146,7 +145,7 @@ contract StakingRewards is Ownable, ReentrancyGuard, StakingRewardsAcceleration 
         if (reward > 0) {
             rewards[msg.sender] = 0;
             rewardsToken.safeTransfer(msg.sender, reward);
-            ref.add_score(reward);
+            ref.add_score(msg.sender, reward);
             emit RewardPaid(msg.sender, reward);
         }
     }
